@@ -4,7 +4,7 @@ set -ueo pipefail
 shopt -s dotglob extglob nullglob
 
 # Constants
-VERSION=1.6.1
+VERSION=1.6.1+temp1
 SOURCE=$(readlink -f "${BASH_SOURCE[0]}")
 GITHUB_URL='https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl'
 DISABLE_UPGRADE=
@@ -293,6 +293,7 @@ bdc_update() {
     printf 'Updating Git repository...\n' >&2
     git fetch origin "$bd_repo_branch"
     git reset --hard FETCH_HEAD
+    sed -i betterdiscord/index.js -e 's/5000/3899/'
   else
     printf 'WARN: No Git repository found.\n' >&2
   fi
